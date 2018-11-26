@@ -14,4 +14,16 @@
     <div id="app"></div>
     <!-- built files will be auto injected -->
   </body>
+  <!-- Handles Netlify identity such as account verification -->
+  <script>
+      if (window.netlifyIdentity) {
+          window.netlifyIdentity.on("init", user => {
+              if (!user) {
+                  window.netlifyIdentity.on("login", () => {
+                      document.location.href = "/admin/";
+                  });
+              }
+          });
+      }
+  </script>
 </html>

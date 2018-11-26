@@ -1,12 +1,13 @@
 const path = require('path')
 const PrerenderSPAPlugin = require('prerender-spa-plugin')
+const copyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   configureWebpack: {
     plugins: [
       new PrerenderSPAPlugin({
         staticDir: path.join(__dirname, 'dist'),
-        routes: [ 
+        routes: [
           '/',
           '/icons',
           '/testing',
@@ -14,6 +15,14 @@ module.exports = {
         ],
       })
     ]
+  },
+  chainWebpack: config => {
+    config
+        .plugin('copy')
+        .use(copyWebpackPlugin, [[{
+          from: 'public',
+          ignore: ['./index.html', 'DS_Store']
+        }]])
   },
   css: {
     loaderOptions: {
