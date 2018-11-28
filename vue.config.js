@@ -1,6 +1,6 @@
-const path = require('path')
-const PrerenderSPAPlugin = require('prerender-spa-plugin')
-const copyWebpackPlugin = require('copy-webpack-plugin')
+const path = require('path');
+const PrerenderSPAPlugin = require('prerender-spa-plugin');
+const copyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   configureWebpack: {
@@ -13,16 +13,16 @@ module.exports = {
           '/testing',
           '/bootstrap',
         ],
-      })
-    ]
+      }),
+    ],
   },
-  chainWebpack: config => {
+  chainWebpack: (config) => {
     config
-        .plugin('copy')
-        .use(copyWebpackPlugin, [[{
-          from: 'public',
-          ignore: ['./index.html', 'DS_Store']
-        }]])
+      .plugin('copy')
+      .use(copyWebpackPlugin, [[{
+        from: 'public',
+        ignore: ['./index.html', 'DS_Store'],
+      }]]);
   },
   css: {
     loaderOptions: {
